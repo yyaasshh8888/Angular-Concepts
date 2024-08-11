@@ -1,0 +1,29 @@
+<div class="container-fluid">
+  <form [formGroup]="loginForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="username" class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        name="username"
+        formControlName="username"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="passwd" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="passwd"
+        formControlName="passwd"
+      />
+    </div>
+    <button
+      type="submit"
+      class="btn btn-primary"
+      [disabled]="loginForm.invalid"
+    >
+      Submit
+    </button>
+  </form>
+</div>

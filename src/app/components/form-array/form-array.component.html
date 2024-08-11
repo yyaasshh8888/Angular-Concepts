@@ -1,0 +1,124 @@
+<div class="container-fluid">
+  <app-info-banner
+    msgText="Sample example for demonstrating - Form Array"
+  ></app-info-banner>
+
+  <form [formGroup]="reactiveForm">
+    <div class="row" formArrayName="filters">
+      <ng-container *ngFor="let itr of filters.controls; let i = index">
+        <ng-container [formGroupName]="i">
+          <div class="row">
+            <div class="col-md-3 mb-3">
+              <label for="uname" class="form-label">Value 1</label>
+              <input
+                appNumbersOnly
+                type="text"
+                class="form-control"
+                name="value1"
+                formControlName="value1"
+              />
+            </div>
+            <!-- <div class="col-md-2 mb-3">
+            <label for="uname" class="form-label">Operator</label>
+            <select
+              class="form-control"
+              name="operator"
+              formControlName="operator"
+            >
+              <option value="+">Addition +</option>
+              <option value="-">Substraction -</option>
+              <option value="*">Multiplication *</option>
+              <option value="/">Division /</option>
+            </select>
+          </div> -->
+            <div class="col-md-3 mb-3">
+              <label for="uname" class="form-label">Value 2</label>
+              <input
+                appNumbersOnly
+                type="text"
+                class="form-control"
+                name="value1"
+                formControlName="value2"
+              />
+            </div>
+
+            <div class="col-md-2 mb-3">
+              <button class="btn btn-danger mt-2r" (click)="removeFilter(i)">
+                <i class="bi bi-trash"></i>
+              </button>
+            </div>
+          </div>
+        </ng-container>
+      </ng-container>
+      <div class="col-md-1 mb-3">
+        <button class="btn btn-primary mt-2r" (click)="addFilter()">
+          Add
+          <i class="bi bi-plus"></i>
+        </button>
+      </div>
+    </div>
+    <div class="alert alert-danger" role="alert" *ngIf="reactiveForm.errors">
+      {{ reactiveForm.get("uname")?.errors | json }}
+      {{ reactiveForm.errors | json }}
+    </div>
+
+    <button
+      class="btn btn-primary mt-2r"
+      (click)="generateResults()"
+      *ngIf="!isResultsGenerated"
+    >
+      Generate Results
+      <span class="badge text-bg-secondary">
+        <i class="bi-magic"></i>
+      </span>
+    </button>
+    <ng-container *ngIf="isResultsGenerated">
+      <ng-container *ngFor="let operation of results; let i = index">
+        <div class="accordion" id="accordionExample">
+          <div class="accordion-item">
+            <h2 class="accordion-header">
+              <button
+                class="accordion-button"
+                [class.collapsed]="!results[i].expanded"
+                type="button"
+                data-bs-target="#collapseOne"
+                (click)="results[i].expanded = !results[i].expanded"
+              >
+                <span class="ms-1 btn btn-info badge rounded-pill text-dark">
+                  Result #{{ i + 1 }}
+                </span>
+              </button>
+            </h2>
+            <div
+              [class.show]="results[i].expanded"
+              class="accordion-collapse collapse"
+              data-bs-parent="#accordionExample"
+            >
+              <div class="accordion-body">
+                <ng-container *ngFor="let result of results[i]?.list">
+                  <div class="card-body border bg-transparent border-success">
+                    <strong>{{
+                      result.value1 +
+                        " " +
+                        result.operator +
+                        " " +
+                        result.value2 +
+                        " = " +
+                        result.result
+                    }}</strong>
+                    <span class="badge text-bg-secondary p-0 ms-5">
+                      <i
+                        class="bi-check2"
+                        style="color: green; font-size: 2rem"
+                      ></i>
+                    </span>
+                  </div>
+                </ng-container>
+              </div>
+            </div>
+          </div>
+        </div>
+      </ng-container>
+    </ng-container>
+  </form>
+</div>

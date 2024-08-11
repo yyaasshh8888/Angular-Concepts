@@ -1,0 +1,42 @@
+<div class="card p-4 mx-5 my-5 border border-primary">
+  <app-info-banner msgText="Directive for Highlight effect"></app-info-banner>
+  <p><span appHighlight="blue">Hover me to see highlight effect</span></p>
+</div>
+<div class="card p-4 mx-5 my-5 border border-primary">
+  <app-info-banner
+    msgText="Directive for accepting number only"
+  ></app-info-banner>
+  <label for="">Number Only Directive</label>
+  <input appNumbersOnly type="text" class="form-control" name="value1" />
+</div>
+<div class="card p-4 mx-5 my-5 border border-primary">
+  <app-info-banner
+    msgText="Directive for currency formatting in US format without cents"
+  ></app-info-banner>
+  <label for="">Currency formatter without cents</label>
+  <input
+    appNumbersOnly
+    appCurrencyFormatter
+    type="text"
+    class="form-control"
+    name="value1"
+  />
+</div>
+<div class="card p-4 mx-5 my-5 border border-primary">
+  <app-info-banner
+    msgText="Directive for currency formatting in US format with cents"
+  ></app-info-banner>
+  <label for="">Currency formatter without cents</label>
+  <input
+    appNumbersOnly
+    appCurrencyFormatter
+    [cents]="true"
+    type="text"
+    class="form-control"
+    name="value1"
+  />
+</div>
+<div class="card p-4 mx-5 my-5 border border-primary">
+  <app-info-banner msgText="Directive for Magnifying"></app-info-banner>
+  <p appMagnifier>Hover me to see magnifying effect</p>
+</div>

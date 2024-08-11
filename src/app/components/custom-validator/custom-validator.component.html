@@ -1,0 +1,35 @@
+<div class="container-fluid">
+  <form [formGroup]="reactiveForm" (ngSubmit)="onSubmit()">
+    <div class="mb-3">
+      <label for="uname" class="form-label">Username</label>
+      <input
+        type="text"
+        class="form-control"
+        name="uname"
+        formControlName="uname"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="passwd" class="form-label">Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="passwd"
+        formControlName="passwd"
+      />
+    </div>
+    <div class="mb-3">
+      <label for="confirmPasswd" class="form-label">Confirm Password</label>
+      <input
+        type="password"
+        class="form-control"
+        name="confirmPasswd"
+        formControlName="confirmPasswd"
+      />
+    </div>
+    <div class="alert alert-danger" role="alert">
+      {{ reactiveForm.get("uname")?.errors | json }}
+      {{ reactiveForm.errors | json }}
+    </div>
+  </form>
+</div>

@@ -1,0 +1,33 @@
+<div class="container-fluid">
+  <div class="my-2">
+    <app-info-banner
+      msgText="Angular Learning"
+      icon="bi bi-stars"
+    ></app-info-banner>
+  </div>
+
+  <div class="flex-row">
+    <div class="card col-md-3" *ngFor="let topic of learningTopics">
+      <div class="card-body">
+        <h5 class="card-title">{{ topic.title }}</h5>
+        <h6 class="card-subtitle mb-2 text-body-secondary">
+          {{ topic.subTitle }}
+        </h6>
+        <p class="card-text">
+          {{ topic.desc }}
+        </p>
+        <button
+          [routerLink]="['/' + topic.route]"
+          routerLinkActive="card-link"
+          type="button"
+          class="btn btn-primary"
+        >
+          Start
+          <span class="badge text-bg-secondary">
+            <i class="bi-arrow-right"></i>
+          </span>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>
