@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { HttpService } from '../../services/http.service';
 import { IPhoto } from '../../models/photos.model';
 import { CommonModule } from '@angular/common';
-import { interval, Subscription } from 'rxjs';
+import { interval, map, Observable, Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-image-carousel',
@@ -16,27 +16,24 @@ export class ImageCarouselComponent {
   currentIndex: number = 0;
   carouselSub!: Subscription;
   constructor(private _httpService: HttpService) {}
-  photos: IPhoto[] = [];
+  photos!: Observable<IPhoto[]>;
+  length: number = 0;
   ngOnInit() {
-    this._httpService.getImages().subscribe((response) => {
-      console.log(response.photos);
-      this.photos = response.photos;
-      this.startCarousel();
-    });
+    this.photos = this._httpService.getImages().pipe(
+      map((response) => {
+        this.startCarousel();
+        this.length = response?.photos?.length;
+        return response.photos;
+      })
+    );
   }
   startCarousel() {
     this.carouselSub?.unsubscribe();
     this.carouselSub = interval(2000).subscribe(() => {
-      this.currentIndex = this.currentIndex % this.photos.length;
-      this.currentIndex++;
+      this.currentIndex = (this.currentIndex + 1) % this.length;
     });
   }
   ngOnDestroy(): void {
     this.carouselSub?.unsubscribe();
-  }
-
-  // This will return the current photo being displayed
-  get currentPhoto(): IPhoto {
-    return this.photos[this.currentIndex];
   }
 }

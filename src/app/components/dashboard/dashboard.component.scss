@@ -1,0 +1,17 @@
+.card-container {
+  display: grid;
+  gap: 1rem;
+  grid-template-columns: repeat(4, 1fr);
+}
+/* Responsive layout - for mobile-sized screens (e.g., 480px) */
+@media (max-width: 768px) {
+  .card-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+/* Responsive layout - for mobile-sized screens (e.g., 480px) */
+@media (max-width: 480px) {
+  .card-container {
+    grid-template-columns: repeat(1, 1fr);
+  }
+}

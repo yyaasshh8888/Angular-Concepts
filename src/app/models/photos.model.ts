@@ -1,7 +1,7 @@
 export interface IPhoto {
   description: string;
   id: number;
-  title: string;
+  title: string | null;
   url: string;
   user: number;
 }

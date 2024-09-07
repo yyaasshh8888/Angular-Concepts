@@ -1,7 +1,10 @@
 <div class="carousel-container">
-  <div *ngIf="photos.length; else noDataTemplate">
+  <div *ngIf="photos | async as photoList; else noDataTemplate">
     <!-- <h3>{{ currentPhoto.title }}</h3> -->
-    <img [src]="currentPhoto.url" alt="{{ currentPhoto.title }}" width="500" />
+    <img
+      [src]="photoList?.[currentIndex]?.url"
+      alt="{{ photoList?.[currentIndex]?.title }}"
+    />
   </div>
 
   <ng-template #noDataTemplate>
