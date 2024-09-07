@@ -38,5 +38,12 @@ export class DashboardComponent {
       route: 'form-array',
       desc: 'To demonstrate an example of form array using reactive form in Angular',
     },
+    //  Image Carousel
+    {
+      title: 'Image Carousel',
+      subTitle: 'Image Carousel',
+      route: 'image-carousel',
+      desc: 'To demonstrate an example of Image Carousel effect',
+    },
   ];
 }

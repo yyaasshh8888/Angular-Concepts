@@ -1,0 +1,10 @@
+<div class="carousel-container">
+  <div *ngIf="photos.length; else noDataTemplate">
+    <!-- <h3>{{ currentPhoto.title }}</h3> -->
+    <img [src]="currentPhoto.url" alt="{{ currentPhoto.title }}" width="500" />
+  </div>
+
+  <ng-template #noDataTemplate>
+    <p>No photos found.</p>
+  </ng-template>
+</div>

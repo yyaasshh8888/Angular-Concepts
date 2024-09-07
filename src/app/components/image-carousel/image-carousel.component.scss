@@ -1,0 +1,13 @@
+/* photo-carousel.component.css */
+.carousel-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100%; /* Full screen height */
+  width: 100%; /* Full screen width */
+  background-color: #f4f4f4;
+}
+img {
+  outline: 5px solid yellow;
+  border: 2px solid black;
+}
